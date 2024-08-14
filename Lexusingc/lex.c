@@ -223,3 +223,25 @@ int isKeyword(const char *str) {
 int isOperatorChar(char c) {
     return strchr("+-*/=<>!&|%^", c) != NULL;
 }
+
+
+*/
+    
+Input: int a,b,c;
+a=b+c;
+Tokens:
+Token: Keyword         Value: int
+Token: Identifier      Value: a
+Token: Punctuation     Value: ,
+Token: Identifier      Value: b
+Token: Punctuation     Value: ,
+Token: Identifier      Value: c
+Token: Punctuation     Value: ;
+Token: Identifier      Value: a
+Token: Operator        Value: =
+Token: Identifier      Value: b
+Token: Operator        Value: +
+Token: Identifier      Value: c
+Token: Punctuation     Value: ;
+Token: End             Value: 
+*/
