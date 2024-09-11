@@ -282,4 +282,5 @@ a       b
  Start State:
 q1
 Final states:
+{q1,q3,}
 /*
