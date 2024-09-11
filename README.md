@@ -4,8 +4,4 @@
 </div>
 <br>
 
-- [Compiler Design Programs](/Networking%20Commands/read.md/)
-
-### Socket Programming
- - [TCP](TCP)
- - [UDP](UDP)
+###Compiler Design Programs
