@@ -341,3 +341,64 @@ void main()
  
     print_dfa_table(OptDFA, N_optDFA_states, N_symbols, NEW_finals);
 }
+
+*/
+mec@cc-2-2:~/cs7a$ ./dfaminimize.o 
+Enter the number of DFA states: 5
+Enter the number of input symbols: 2
+Enter the transition table (each row separated by new line):
+Transition for state A with symbol 0: B
+Transition for state A with symbol 1: C
+Transition for state B with symbol 0: A
+Transition for state B with symbol 1: D
+Transition for state C with symbol 0: E
+Transition for state C with symbol 1: C
+Transition for state D with symbol 0: D
+Transition for state D with symbol 1: E
+Transition for state E with symbol 0: B
+Transition for state E with symbol 1: C
+Enter the final states (e.g., 'EF'): AE
+
+DFA: STATE TRANSITION TABLE
+     |   0    1  
+-----+------------
+  A  |   B    C  
+  B  |   A    D  
+  C  |   E    C  
+  D  |   D    E  
+  E  |   B    C  
+Final states = AE
+
+EQUIV. CLASS CANDIDATE ==> 0:[BCD] 1:[AE]
+   0:[BCD]      --> [AED] (110)
+   0:[BCD]      --> [DCE] (001)
+   1:[AE]       --> [BB] (00)
+   1:[AE]       --> [CC] (00)
+
+EQUIV. CLASS CANDIDATE ==> 0:[AE] 1:[BC] 2:[D]
+   0:[AE]       --> [BB] (11)
+   0:[AE]       --> [CC] (11)
+   1:[BC]       --> [AE] (00)
+   1:[BC]       --> [DC] (21)
+   2:[D]        --> [D] (2)
+   2:[D]        --> [E] (0)
+
+EQUIV. CLASS CANDIDATE ==> 0:[AE] 1:[B] 2:[C] 3:[D]
+   0:[AE]       --> [BB] (11)
+   0:[AE]       --> [CC] (22)
+   1:[B]        --> [A] (0)
+   1:[B]        --> [D] (3)
+   2:[C]        --> [E] (0)
+   2:[C]        --> [C] (2)
+   3:[D]        --> [D] (3)
+   3:[D]        --> [E] (0)
+
+DFA: STATE TRANSITION TABLE
+     |   0    1  
+-----+------------
+  A  |   B    C  
+  B  |   A    D  
+  C  |   A    C  
+  D  |   D    A  
+Final states = A
+ /*
