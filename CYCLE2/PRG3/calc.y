@@ -2,54 +2,56 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// Declare the yyerror function to avoid implicit declaration warnings
 void yyerror(const char *s);
+
+// Declare the yylex function to avoid implicit declaration warnings
 int yylex(void);
+
+// Global variable to indicate validity of the arithmetic expression
+int flag = 0;
 %}
 
-%union {
-    int num;
-}
+%token NUMBER
 
-%token <num> NUMBER
-%type <num> expression term factor
+%left '+' '-'
+%left '*' '/' '%'
+%left '(' ')'
 
-%% 
+%%
 
-calculation:
-    expression '\n' { printf("Result: %d\n", $1); }
-    ;
-
-expression:
-    expression '+' term  { $$ = $1 + $3; }
-    | expression '-' term { $$ = $1 - $3; }
-    | term                 { $$ = $1; }
-    ;
-
-term:
-    term '*' factor       { $$ = $1 * $3; }
-    | term '/' factor     { 
-        if ($3 == 0) {
-            yyerror("Division by zero!");
-            $$ = 0; 
-        } else {
-            $$ = $1 / $3; 
-        }
+// Define grammar rules for arithmetic expressions
+ArithmeticExpression:
+    E {
+        printf("\nResult=%d\n", $$);
+        return 0;  // End parsing after expression is evaluated
     }
-    | factor               { $$ = $1; }
-    ;
+;
 
-factor:
-    '(' expression ')'    { $$ = $2; }
-    | NUMBER               { $$ = $1; }
-    ;
+E:
+    E '+' E { $$ = $1 + $3; }
+  | E '-' E { $$ = $1 - $3; }
+  | E '*' E { $$ = $1 * $3; }
+  | E '/' E { $$ = $1 / $3; }
+  | E '%' E { $$ = $1 % $3; }
+  | '(' E ')' { $$ = $2; }
+  | NUMBER { $$ = $1; }
+;
 
-%% 
+%%
 
-void yyerror(const char *s) {
-    fprintf(stderr, "Error: %s\n", s);
+// Main function
+int main() {
+    printf("\nEnter Any Arithmetic Expression (Addition, Subtraction, Multiplication, Division, Modulus):\n");
+    yyparse();  // Start parsing the input
+    if (flag == 0) {
+        printf("\nEntered arithmetic expression is Valid\n\n");
+    }
+    return 0;
 }
 
-int main(void) {
-    printf("Enter an expression: ");
-    return yyparse();
+// Error handling function
+void yyerror(const char *s) {
+    printf("\nEntered arithmetic expression is Invalid: %s\n\n", s);
+    flag = 1;  // Mark as invalid if an error occurs
 }
