@@ -1,36 +1,19 @@
-%{
-#include <stdio.h>
-#include "y.tab.h"
-%}
+alpha [A-Za-z]
+digit [0-9]
 
 %%
 
-"for"           { return FOR; }
-"("             { return LPAREN; }
-")"             { return RPAREN; }
-"{"             { return LBRACE; }
-"}"             { return RBRACE; }
-";"             { return SEMICOLON; }
-"="             { return ASSIGN; }
-"+"             { return PLUS; }
-"-"             { return MINUS; }
-"*"             { return MULTIPLY; }
-"/"             { return DIVIDE; }
-"<"             { return LESS; }
-">"             { return GREATER; }
-"<="            { return LESSEQUAL; }
-">="            { return GREATEREQUAL; }
-"=="            { return EQUAL; }
-"!="            { return NOTEQUAL; }
-"++"            { return INCREMENT; }
-"--"            { return DECREMENT; }
-[a-zA-Z_][a-zA-Z0-9_]*  { return IDENTIFIER; }
-[0-9]+          { return NUMBER; }
-[ \t\n]         { /* Ignore whitespace */ }
-.               { printf("Unexpected character: %s\n", yytext); }
+[\t \n]
+for             return FOR;
+{digit}+    return NUM;
+{alpha}({alpha}|{digit})* return ID;
+"<="         return LE;
+">="         return GE;
+"=="         return EQ;
+"!="          return NE;
+"||"            return OR;
+"&&"         return AND;
+.                return yytext[0];
 
 %%
 
-int yywrap(void) {
-    return 1;
-}
