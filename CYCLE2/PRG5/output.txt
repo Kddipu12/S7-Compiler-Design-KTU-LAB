@@ -1,0 +1,21 @@
+mec@cc-2-2:~/cs7a/cycle2/prg4/prg5$ lex for.l
+mec@cc-2-2:~/cs7a/cycle2/prg4/prg5$ yacc for.y
+for.y: warning: 25 shift/reduce conflicts [-Wconflicts-sr]
+for.y: warning: 4 reduce/reduce conflicts [-Wconflicts-rr]
+mec@cc-2-2:~/cs7a/cycle2/prg4/prg5$ gcc y.tab.c -ll -ly
+y.tab.c: In function 'yyparse':
+y.tab.c:1204:16: warning: implicit declaration of function 'yylex' [-Wimplicit-function-declaration]
+       yychar = yylex ();
+                ^~~~~
+y.tab.c:1339:7: warning: implicit declaration of function 'yyerror' [-Wimplicit-function-declaration]
+       yyerror (YY_("syntax error"));
+       ^~~~~~~
+for.y: At top level:
+for.y:62:1: warning: return type defaults to 'int' [-Wimplicit-int]
+ main() {
+ ^~~~
+mec@cc-2-2:~/cs7a/cycle2/prg4/prg5$ ./a.out 
+Enter the expression:
+for(i=0;i<n;i++)
+i=i+1;
+Input accepted
