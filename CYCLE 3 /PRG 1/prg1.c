@@ -1,67 +1,66 @@
-#include <stdio.h>
-#include <string.h>
-#include <ctype.h>
+#include<stdio.h>
+#include<string.h>
+#include<ctype.h>
 
-char input[50]; // increased size to handle longer inputs
+char input[10];
 int i, error;
 
-void E();
-void T();
-void Eprime();
-void Tprime();
-void F();
+void E();     // for expressions
+void T();     // for terms
+void Eprime();// for E'
+void Tprime();// for T'
+void F();     // for factors
 
 void main() {
-    i = 0;
-    error = 0;
-    printf("Enter an arithmetic expression: ");
-    fgets(input, sizeof(input), stdin); // safer input method
-    input[strcspn(input, "\n")] = 0; // remove trailing newline if present
-    E();
-    if (strlen(input) == i && error == 0)
-        printf("\nAccepted..!!!\n");
-    else
-        printf("\nRejected..!!!\n");
+  i = 0;
+  error = 0;
+  printf("Enter an arithmetic expression : ");
+  gets(input);  // unsafe function, use fgets in real code
+  E();
+  if (strlen(input) == i && error == 0)
+    printf("\nAccepted..!!!\n");
+  else 
+    printf("\nRejected..!!!\n");
 }
 
 void E() {
-    T();
-    Eprime();
+  T();
+  Eprime();
 }
 
 void Eprime() {
-    if (input[i] == '+') {
-        i++;
-        T();
-        Eprime();
-    }
+  if (input[i] == '+' || input[i] == '-') {
+    i++;
+    T();
+    Eprime();
+  }
 }
 
 void T() {
-    F();
-    Tprime();
+  F();
+  Tprime();
 }
 
 void Tprime() {
-    if (input[i] == '*') {
-        i++;
-        F();
-        Tprime();
-    }
+  if (input[i] == '*' || input[i] == '/') {
+    i++;
+    F();
+    Tprime();
+  }
 }
 
 void F() {
-    if (isalnum(input[i])) {
-        i++;
-    } else if (input[i] == '(') {
-        i++;
-        E();
-        if (input[i] == ')') {
-            i++;
-        } else {
-            error = 1; // unmatched parenthesis
-        }
+  if (isalnum(input[i])) {
+    i++;
+  } else if (input[i] == '(') {
+    i++;
+    E();
+    if (input[i] == ')') {
+      i++;
     } else {
-        error = 1; // invalid character
+      error = 1;
     }
+  } else {
+    error = 1;
+  }
 }
