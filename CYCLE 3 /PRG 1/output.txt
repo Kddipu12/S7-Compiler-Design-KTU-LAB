@@ -1,0 +1,10 @@
+mec@cc-2-2:~/cs7a/cycle3$ gcc -o prg1 prg1.c 
+mec@cc-2-2:~/cs7a/cycle3$ ./prg1 
+Enter an arithmetic expression: a+b*c
+
+Accepted..!!!
+mec@cc-2-2:~/cs7a/cycle3$ ./prg1 
+Enter an arithmetic expression: a + b (
+
+Rejected..!!!
+mec@cc-2-2:~/cs7a/cycle3$ 
