@@ -1,0 +1,19 @@
+mec@cc-2-2:~/cs7a/cycle3$ gcc -o prg2 prg2.c 
+mec@cc-2-2:~/cs7a/cycle3$ ./prg2 
+Enter the number of productions: 
+6
+Enter the productions:
+E=TR
+R=+TR        
+R=$
+T=F
+F=(E)        
+F=id
+Enter a variable whose first & follow is to be found: E
+First(E) = {( i }
+Follow(E) = {$ ) }
+Want to continue or not (1/0)? 1
+Enter a variable whose first & follow is to be found: F
+First(F) = {( i }
+Follow(F) = {+ $ ) }
+Want to continue or not (1/0)? 
