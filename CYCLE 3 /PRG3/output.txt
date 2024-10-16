@@ -1,0 +1,8 @@
+mec@cc-2-2:~/cs7a/cycle3$ ./prg3
+Enter an arithmetic expression: 2-3
+
+Accepted..!!!
+mec@cc-2-2:~/cs7a/cycle3$ ./prg3
+Enter an arithmetic expression: a+b
+
+Accepted..!!!
