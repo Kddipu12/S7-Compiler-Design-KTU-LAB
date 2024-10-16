@@ -1,0 +1,12 @@
+
+Enter the string (use 'i' for variables): i+i*i
+
+STACK   INPUT   ACTION
+$i      +i*i$   Shift
+$E      +i*i$   Reduced: E->i
+$E+     i*i$    Shift
+$E+i    *i$     Shift
+$E+E    *i$     Reduced: E->i
+$E+E*   i$      Shift
+$E+E*i  $       Shift
+$E+E*E  $       Reduced: E->i
